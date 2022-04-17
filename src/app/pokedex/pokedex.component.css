@@ -1,0 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+
+.pokedex {
+  max-width: 900px;
+  max-height: 600px !important;
+}
+
+.right-half {
+  border-radius: 0 35px 35px 0; 
+  max-height: 500px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+}
+
+.pokemon-list {
+  
+}
+
+.pokemon-list li:hover {
+  cursor: pointer;
+  background-color: gray;
+}
+
+.pokemon-list-tab {  
+  padding: .5rem;
+  border: 1px solid whitesmoke;
+  /* border-top: 1px;
+  border-left: 1px;
+  border-bottom: 1px;
+  border-right: 1px; */
+
+  width: fit-content;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000; 
+  border: 1px solid lightgray;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000; 
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+

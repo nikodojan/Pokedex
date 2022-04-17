@@ -1,0 +1,75 @@
+<div class="container pokedex">
+
+  <div class="row" style="max-height: 500px !important;">
+    
+    <!-- left side -->
+    <div class="d-flex flex-column col col-md-6  border bg-danger text-white align-items-center p-4"
+    style="border-radius: 35px 0 0 35px; max-height: 500px;">
+      
+      <dex-display [imagePath]="currentImage"></dex-display>
+      <div class="row w-100 px-3">
+        <display-controls></display-controls>
+      </div>
+      
+    </div>
+    
+    <!-- right side -->
+    <div class="d-flex flex-column col col-md-6 border bg-danger text-white p-4 right-half">
+      
+      <!-- Text-display -->
+      <div class="bg-black text-white" style="overflow-y: scroll; display: flex; flex-direction: column;">        
+
+        <div *ngIf="dataDisplay === 'LIST'">
+          <div *ngIf="pokeList" class="pokemon-list px-2">
+            <ul class="list-unstyled">
+              <li *ngFor="let poke of pokeList.results"
+                (click)="selectPokemon(poke.url)">
+                {{poke.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngIf="dataDisplay === 'DETAILS'">
+          <div *ngIf="selectedPokemon">
+            <div class="col px-2">
+              
+              <h3 class="text-center">{{selectedPokemon.name}}</h3>
+
+              <div class="mb-2">
+                <h6>Types:</h6>
+                <div *ngFor="let type of selectedPokemon.types" class="px-3">{{type.type.name}}</div>
+              </div>
+
+              <div class="mb-2">
+                <h6>Weight:</h6>
+                <div class="px-3">{{selectedPokemon.weight}}</div>
+              </div>
+              
+              <div class="mb-2">
+                <h6>Abilities:</h6>
+                <div class="px-3" *ngFor="let ability of selectedPokemon.abilities" >{{ability.ability.name}}</div>
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+
+                <!-- control tabs -->
+
+       
+      </div>
+      <div class="d-flex flex-row bg-black">
+        <div class="pokemon-list-tab"
+          (click)="setDataDisplay('LIST')">Pokemon</div>
+        <div class="pokemon-list-tab" *ngIf="selectedPokemon"
+          (click)="setDataDisplay('DETAILS')">{{selectedPokemon.name}}</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

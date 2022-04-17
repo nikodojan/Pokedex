@@ -1,0 +1,34 @@
+.ctl-btn {
+  background-color: black !important;
+  color: whitesmoke;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+}
+
+.left {
+  border-radius: 6px 0 0 4px;
+}
+
+.up {
+  border-radius: 6px 6px 0 0;
+}
+
+.right {
+  border-radius: 0 6px 6px 0;
+}
+
+.down {
+  border-radius: 0 0 6px 6px;
+}
+
+.ctl-row {
+  display: flex; 
+  flex-direction: row;
+}

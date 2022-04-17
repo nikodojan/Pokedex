@@ -1,0 +1,7 @@
+img {
+  width: inherit;
+  height: inherit;
+  object-fit: contain;
+  padding: 2rem;
+  
+}
