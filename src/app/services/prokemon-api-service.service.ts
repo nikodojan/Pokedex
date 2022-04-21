@@ -41,7 +41,6 @@ export class ProkemonApiServiceService {
           abilities: response.abilities,
           moves: response.moves,
           sprites: response.sprites
-
         }
       })
     )

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DisplayControls } from '../pokedex/pokedex.component';
 
 @Component({
   selector: 'display-controls',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayControlsComponent implements OnInit {
 
-  constructor() { }
+  @Output('cross-pressed')
+  public crossPressed : EventEmitter<DisplayControls>;
+  
+  constructor() { 
+    this.crossPressed = new EventEmitter<DisplayControls>();
+  }
 
   ngOnInit(): void {
+  }
+
+  nextImg() {
+    this.crossPressed.emit(DisplayControls.Right);
+  }
+
+  previousImg() {
+    this.crossPressed.emit(DisplayControls.Left);
   }
 
 }

@@ -8,6 +8,10 @@ enum DataDisplay {
   'LIST' = 'LIST', 'DETAILS' = "DETAILS"
 }
 
+export enum DisplayControls {
+  'Left' = 'LEFT', 'Right' = 'RIGHT'
+}
+
 // contains the data
 // passes images/image urls to display
 
@@ -23,7 +27,8 @@ export class PokedexComponent implements OnInit {
     pokeService.getPokemonList().subscribe(response=>
       this.pokeList = response);
     this.dataDisplay = DataDisplay.LIST;
-    this.currentImage = 'assets/images/pokedex-logo.png';
+    this.currentImage = 'assets/images/pokedex-logo.png';    
+    this.imageIndex = 4;
   }
 
   pokeList : IApiPokemonReponse | undefined 
@@ -34,6 +39,7 @@ export class PokedexComponent implements OnInit {
 
   images: string[] | undefined;
 
+  imageIndex: number;
   currentImage: string;
 
   selectPokemon(url:string) {
@@ -42,10 +48,7 @@ export class PokedexComponent implements OnInit {
         this.selectedPokemon = response;
         const imgPathes = Object.values(this.selectedPokemon.sprites) as string[];
         this.images = imgPathes;
-        console.log(this.images);
-        this.currentImage = this.images[4];
-        console.log('Pokemon downloaded');
-        console.log(this.selectedPokemon);
+        this.currentImage = this.images[this.imageIndex];
         this.dataDisplay = DataDisplay.DETAILS;
         }
       );
@@ -54,9 +57,38 @@ export class PokedexComponent implements OnInit {
   setDataDisplay(value:string) {
     if (Object.values(DataDisplay).includes(value as unknown as DataDisplay)){
       this.dataDisplay = value;
-    }
-    
+    }    
   }
+
+  onControlsUsed(direction : DisplayControls) {
+    if (this.images){
+      switch (direction) {
+        case DisplayControls.Left:
+
+          do {
+            this.imageIndex = this.imageIndex - 1 >= 0 ? this.imageIndex - 1 : this.images.length - 1 ;
+          } while (this.images[this.imageIndex] == null || !this.images[this.imageIndex]?.toString().startsWith('http'))
+
+          this.currentImage = this.images[this.imageIndex];
+          break;
+          
+        case DisplayControls.Right:
+
+          do {
+            this.imageIndex = this.imageIndex+1 < this.images.length ? this.imageIndex+1 : 0 ;
+          } while (this.images[this.imageIndex] == null || !this.images[this.imageIndex]?.toString().startsWith('http'))
+
+          this.currentImage = this.images[this.imageIndex];
+          break;
+
+        default:
+          break;
+      }
+    }
+
+  }
+
+
 
   ngOnInit(): void {
   }
